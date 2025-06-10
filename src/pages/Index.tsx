@@ -5,21 +5,20 @@ import { MetricCard } from '@/components/dashboard/MetricCard';
 import { ConversationVolumeChart } from '@/components/dashboard/ConversationVolumeChart';
 import { SentimentChart } from '@/components/dashboard/SentimentChart';
 import { ResponseTimeChart } from '@/components/dashboard/ResponseTimeChart';
-import { RecentConversations } from '@/components/dashboard/RecentConversations';
+import { ConversationsTable } from '@/components/dashboard/ConversationsTable';
 import { 
   MessageCircle, 
   Clock, 
-  TrendingUp, 
-  Users, 
-  Bot, 
   CheckCircle,
   Star,
+  ThumbsDown,
   ArrowUpRight,
   Shuffle,
   Target,
   MessageSquare,
   ArrowDown,
-  ArrowUp
+  ArrowUp,
+  Shield
 } from 'lucide-react';
 
 const Index = () => {
@@ -28,32 +27,31 @@ const Index = () => {
       <div className="container mx-auto px-6 py-8">
         <DashboardHeader />
         
-        {/* KPI Metrics Grid */}
+        {/* Primary KPI Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <MetricCard
             title="Total Conversations"
             value="2,847"
             change={12.5}
             changeType="increase"
-            description="vs last week"
+            description="vs last period"
             icon={<MessageCircle className="h-5 w-5" />}
           />
           <MetricCard
-            title="Avg Response Time"
-            value="0.9"
-            change={8.2}
-            changeType="decrease"
-            suffix="s"
-            description="Target: <1s"
-            icon={<Clock className="h-5 w-5" />}
+            title="Total Messages"
+            value="24,392"
+            change={18.3}
+            changeType="increase"
+            description="All messages exchanged"
+            icon={<MessageSquare className="h-5 w-5" />}
           />
           <MetricCard
-            title="Resolution Rate"
-            value="94.3"
-            change={3.1}
+            title="Customer Confirmed Resolution"
+            value="87.2"
+            change={4.1}
             changeType="increase"
             suffix="%"
-            description="Auto-resolved"
+            description="Customer confirmed fixes"
             icon={<CheckCircle className="h-5 w-5" />}
           />
           <MetricCard
@@ -67,16 +65,15 @@ const Index = () => {
           />
         </div>
 
-        {/* Secondary Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-8">
+        {/* Secondary KPI Metrics */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <MetricCard
-            title="Bot Accuracy"
-            value="96.8"
-            change={1.2}
-            changeType="increase"
-            suffix="%"
-            description="Intent recognition"
-            icon={<Bot className="h-5 w-5" />}
+            title="ThumbDown Messages"
+            value="243"
+            change={12.7}
+            changeType="decrease"
+            description="Negative feedback received"
+            icon={<ThumbsDown className="h-5 w-5" />}
           />
           <MetricCard
             title="Escalation Rate"
@@ -86,23 +83,6 @@ const Index = () => {
             suffix="%"
             description="To human agents"
             icon={<ArrowUpRight className="h-5 w-5" />}
-          />
-          <MetricCard
-            title="Active Users"
-            value="1,324"
-            change={18.7}
-            changeType="increase"
-            description="Currently online"
-            icon={<Users className="h-5 w-5" />}
-          />
-          <MetricCard
-            title="Uptime"
-            value="99.9"
-            change={0}
-            changeType="neutral"
-            suffix="%"
-            description="Last 30 days"
-            icon={<TrendingUp className="h-5 w-5" />}
           />
           <MetricCard
             title="Intent Hopping"
@@ -124,31 +104,30 @@ const Index = () => {
           />
         </div>
 
-        {/* Tertiary Metrics - Additional KPIs */}
+        {/* Tertiary KPI Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           <MetricCard
-            title="Avg Messages per Conversation"
-            value="7.2"
-            change={5.3}
-            changeType="decrease"
-            suffix="msgs"
-            description="User-bot exchanges"
-            icon={<MessageSquare className="h-5 w-5" />}
+            title="Interjected Messages (Validator)"
+            value="156"
+            change={8.2}
+            changeType="increase"
+            description="Validator interventions"
+            icon={<Shield className="h-5 w-5" />}
           />
           <MetricCard
-            title="Input Tokens (GenAI)"
+            title="Total Input Tokens"
             value="2.4M"
             change={22.1}
             changeType="increase"
-            description="Total tokens processed"
+            description="Tokens processed"
             icon={<ArrowDown className="h-5 w-5" />}
           />
           <MetricCard
-            title="Output Tokens (GenAI)"
+            title="Total Output Tokens"
             value="1.8M"
             change={18.9}
             changeType="increase"
-            description="Total tokens generated"
+            description="Tokens generated"
             icon={<ArrowUp className="h-5 w-5" />}
           />
         </div>
@@ -159,10 +138,13 @@ const Index = () => {
           <SentimentChart />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Response Time Chart - Full Width */}
+        <div className="mb-8">
           <ResponseTimeChart />
-          <RecentConversations />
         </div>
+
+        {/* Recent Conversations Table - Full Width */}
+        <ConversationsTable />
       </div>
     </div>
   );

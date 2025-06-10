@@ -1,9 +1,9 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Bot, Download, RefreshCw, Calendar } from 'lucide-react';
+import { Bot, Download, RefreshCw } from 'lucide-react';
+import { DateRangePicker } from './DateRangePicker';
 
 export const DashboardHeader: React.FC = () => {
   return (
@@ -15,7 +15,7 @@ export const DashboardHeader: React.FC = () => {
           </div>
           <div>
             <h1 className="text-2xl font-bold text-foreground">Agenti Customer Service</h1>
-            <p className="text-muted-foreground">Business Intelligence Dashboard</p>
+            <p className="text-muted-foreground">Conversational Chat Agent Dashboard</p>
           </div>
         </div>
         <Badge variant="secondary" className="bg-green-100 text-green-700">
@@ -25,18 +25,7 @@ export const DashboardHeader: React.FC = () => {
       </div>
       
       <div className="flex items-center space-x-3">
-        <Select defaultValue="24h">
-          <SelectTrigger className="w-32">
-            <Calendar className="w-4 h-4 mr-2" />
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="1h">Last Hour</SelectItem>
-            <SelectItem value="24h">Last 24h</SelectItem>
-            <SelectItem value="7d">Last 7 days</SelectItem>
-            <SelectItem value="30d">Last 30 days</SelectItem>
-          </SelectContent>
-        </Select>
+        <DateRangePicker />
         
         <Button variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
