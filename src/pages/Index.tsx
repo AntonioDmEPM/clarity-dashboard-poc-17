@@ -16,7 +16,10 @@ import {
   Star,
   ArrowUpRight,
   Shuffle,
-  Target
+  Target,
+  MessageSquare,
+  ArrowDown,
+  ArrowUp
 } from 'lucide-react';
 
 const Index = () => {
@@ -118,6 +121,35 @@ const Index = () => {
             suffix="%"
             description="Conversations reaching agreement"
             icon={<Target className="h-5 w-5" />}
+          />
+        </div>
+
+        {/* Tertiary Metrics - Additional KPIs */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <MetricCard
+            title="Avg Messages per Conversation"
+            value="7.2"
+            change={5.3}
+            changeType="decrease"
+            suffix="msgs"
+            description="User-bot exchanges"
+            icon={<MessageSquare className="h-5 w-5" />}
+          />
+          <MetricCard
+            title="Input Tokens (GenAI)"
+            value="2.4M"
+            change={22.1}
+            changeType="increase"
+            description="Total tokens processed"
+            icon={<ArrowDown className="h-5 w-5" />}
+          />
+          <MetricCard
+            title="Output Tokens (GenAI)"
+            value="1.8M"
+            change={18.9}
+            changeType="increase"
+            description="Total tokens generated"
+            icon={<ArrowUp className="h-5 w-5" />}
           />
         </div>
 
