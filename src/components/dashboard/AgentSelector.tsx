@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
@@ -52,17 +51,17 @@ export const AgentSelector: React.FC = () => {
   const [selectedAgent, setSelectedAgent] = useState(agents[0]);
 
   return (
-    <div className="flex items-center space-x-4">
-      <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-4 w-full max-w-2xl">
+      <div className="flex items-center space-x-2 flex-1">
         <div className="p-2 bg-primary/10 rounded-lg">
           <Bot className="h-6 w-6 text-primary" />
         </div>
-        <div>
+        <div className="flex-1">
           <Select value={selectedAgent.id} onValueChange={(value) => {
             const agent = agents.find(a => a.id === value);
             if (agent) setSelectedAgent(agent);
           }}>
-            <SelectTrigger className="w-[280px] bg-background border-input">
+            <SelectTrigger className="w-full min-w-[400px] bg-background border-input">
               <SelectValue>
                 <div className="flex items-center justify-between w-full">
                   <div>
