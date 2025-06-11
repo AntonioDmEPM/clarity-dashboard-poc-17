@@ -46,8 +46,18 @@ export const SentimentChart: React.FC = () => {
             />
             <Tooltip 
               formatter={(value, name) => {
-                if (name === 'csat') return [`${value}/5`, 'CSAT Score'];
-                return [`${value}%`, name === 'positive' ? 'Positive' : name === 'neutral' ? 'Neutral' : 'Negative'];
+                switch (name) {
+                  case 'positive':
+                    return [`${value}%`, 'Positive'];
+                  case 'neutral':
+                    return [`${value}%`, 'Neutral'];
+                  case 'negative':
+                    return [`${value}%`, 'Negative'];
+                  case 'csat':
+                    return [`${value}/5`, 'CSAT Score'];
+                  default:
+                    return [value, name];
+                }
               }}
               contentStyle={{
                 backgroundColor: 'hsl(var(--card))',
