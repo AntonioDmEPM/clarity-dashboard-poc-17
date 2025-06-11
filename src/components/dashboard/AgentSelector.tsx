@@ -66,7 +66,6 @@ export const AgentSelector: React.FC = () => {
                 <div className="flex items-center justify-between w-full">
                   <div>
                     <div className="text-lg font-bold text-foreground">{selectedAgent.name}</div>
-                    <p className="text-sm text-muted-foreground">Conversational Chat Agent Dashboard</p>
                   </div>
                 </div>
               </SelectValue>
