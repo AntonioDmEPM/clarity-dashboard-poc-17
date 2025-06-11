@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
@@ -51,21 +52,21 @@ export const AgentSelector: React.FC = () => {
   const [selectedAgent, setSelectedAgent] = useState(agents[0]);
 
   return (
-    <div className="flex items-center space-x-4 w-full max-w-2xl">
+    <div className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 w-full max-w-2xl">
       <div className="flex items-center space-x-2 flex-1">
-        <div className="p-2 bg-primary/10 rounded-lg">
+        <div className="p-2 bg-primary/10 rounded-lg flex-shrink-0">
           <Bot className="h-6 w-6 text-primary" />
         </div>
-        <div className="flex-1">
+        <div className="flex-1 min-w-0">
           <Select value={selectedAgent.id} onValueChange={(value) => {
             const agent = agents.find(a => a.id === value);
             if (agent) setSelectedAgent(agent);
           }}>
-            <SelectTrigger className="w-full min-w-[400px] bg-background border-input">
+            <SelectTrigger className="w-full bg-background border-input">
               <SelectValue>
                 <div className="flex items-center justify-between w-full">
-                  <div>
-                    <div className="text-lg font-bold text-foreground">{selectedAgent.name}</div>
+                  <div className="truncate">
+                    <div className="text-sm sm:text-lg font-bold text-foreground truncate">{selectedAgent.name}</div>
                   </div>
                 </div>
               </SelectValue>
@@ -74,8 +75,8 @@ export const AgentSelector: React.FC = () => {
               {agents.map((agent) => (
                 <SelectItem key={agent.id} value={agent.id} className="focus:bg-accent">
                   <div className="flex items-center justify-between w-full">
-                    <span className="font-medium">{agent.name}</span>
-                    <Badge variant="secondary" className={`ml-2 ${getStatusColor(agent.status)}`}>
+                    <span className="font-medium truncate">{agent.name}</span>
+                    <Badge variant="secondary" className={`ml-2 flex-shrink-0 ${getStatusColor(agent.status)}`}>
                       <div className={`w-2 h-2 ${getStatusDotColor(agent.status)} rounded-full mr-2`}></div>
                       {agent.status}
                     </Badge>
@@ -86,7 +87,7 @@ export const AgentSelector: React.FC = () => {
           </Select>
         </div>
       </div>
-      <Badge variant="secondary" className={getStatusColor(selectedAgent.status)}>
+      <Badge variant="secondary" className={`${getStatusColor(selectedAgent.status)} flex-shrink-0 self-start sm:self-center`}>
         <div className={`w-2 h-2 ${getStatusDotColor(selectedAgent.status)} rounded-full mr-2`}></div>
         {selectedAgent.status}
       </Badge>
