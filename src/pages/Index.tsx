@@ -5,6 +5,7 @@ import { MetricCard } from '@/components/dashboard/MetricCard';
 import { ConversationVolumeChart } from '@/components/dashboard/ConversationVolumeChart';
 import { SentimentChart } from '@/components/dashboard/SentimentChart';
 import { ResponseTimeChart } from '@/components/dashboard/ResponseTimeChart';
+import { IntentFrequencyChart } from '@/components/dashboard/IntentFrequencyChart';
 import { ConversationsTable } from '@/components/dashboard/ConversationsTable';
 import { 
   MessageCircle, 
@@ -138,9 +139,10 @@ const Index = () => {
           <SentimentChart />
         </div>
 
-        {/* Response Time Chart - Full Width */}
-        <div className="mb-8">
+        {/* Response Time and Intent Frequency Charts */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <ResponseTimeChart />
+          <IntentFrequencyChart />
         </div>
 
         {/* Recent Conversations Table - Full Width */}
