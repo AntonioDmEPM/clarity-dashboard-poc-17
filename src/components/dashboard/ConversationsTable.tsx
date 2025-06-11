@@ -3,7 +3,6 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { CheckCircle, Clock, AlertTriangle, ThumbsUp, ThumbsDown, MessageSquare } from 'lucide-react';
 
 const conversations = [
@@ -91,115 +90,104 @@ export const ConversationsTable: React.FC = () => {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'resolved':
-        return <CheckCircle className="w-4 h-4 text-green-600" />;
+        return <CheckCircle className="w-4 h-4 text-green-400" />;
       case 'in-progress':
-        return <Clock className="w-4 h-4 text-blue-600" />;
+        return <Clock className="w-4 h-4 text-blue-400" />;
       case 'escalated':
-        return <AlertTriangle className="w-4 h-4 text-orange-600" />;
+        return <AlertTriangle className="w-4 h-4 text-orange-400" />;
       default:
-        return <MessageSquare className="w-4 h-4 text-gray-600" />;
+        return <MessageSquare className="w-4 h-4 text-gray-400" />;
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'resolved':
-        return 'bg-green-100 text-green-700';
+        return 'bg-green-900/20 text-green-400 border-green-800';
       case 'in-progress':
-        return 'bg-blue-100 text-blue-700';
+        return 'bg-blue-900/20 text-blue-400 border-blue-800';
       case 'escalated':
-        return 'bg-orange-100 text-orange-700';
+        return 'bg-orange-900/20 text-orange-400 border-orange-800';
       default:
-        return 'bg-gray-100 text-gray-700';
+        return 'bg-gray-900/20 text-gray-400 border-gray-800';
     }
   };
 
   const getResolutionColor = (resolution: string) => {
     switch (resolution) {
       case 'confirmed':
-        return 'bg-green-100 text-green-700';
+        return 'bg-green-900/20 text-green-400 border-green-800';
       case 'unconfirmed':
-        return 'bg-yellow-100 text-yellow-700';
+        return 'bg-yellow-900/20 text-yellow-400 border-yellow-800';
       case 'escalated':
-        return 'bg-red-100 text-red-700';
+        return 'bg-red-900/20 text-red-400 border-red-800';
       default:
-        return 'bg-gray-100 text-gray-700';
+        return 'bg-gray-900/20 text-gray-400 border-gray-800';
     }
   };
 
   return (
-    <Card className="col-span-full">
+    <Card className="col-span-full bg-gray-900 border-gray-800">
       <CardHeader>
-        <CardTitle className="text-lg font-semibold">Recent Conversations</CardTitle>
+        <CardTitle className="text-lg font-semibold text-gray-100">Recent Conversations</CardTitle>
       </CardHeader>
       <CardContent>
         <Table>
           <TableHeader>
-            <TableRow>
-              <TableHead>ID</TableHead>
-              <TableHead>Customer</TableHead>
-              <TableHead>Start Time</TableHead>
-              <TableHead>Duration</TableHead>
-              <TableHead>Messages</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Resolution</TableHead>
-              <TableHead>Satisfaction</TableHead>
-              <TableHead>Intents</TableHead>
-              <TableHead>Last Message</TableHead>
+            <TableRow className="border-gray-800 hover:bg-gray-800/50">
+              <TableHead className="text-gray-300">ID</TableHead>
+              <TableHead className="text-gray-300">Start Time</TableHead>
+              <TableHead className="text-gray-300">Duration</TableHead>
+              <TableHead className="text-gray-300">Messages</TableHead>
+              <TableHead className="text-gray-300">Status</TableHead>
+              <TableHead className="text-gray-300">Resolution</TableHead>
+              <TableHead className="text-gray-300">Satisfaction</TableHead>
+              <TableHead className="text-gray-300">Intents</TableHead>
+              <TableHead className="text-gray-300">Last Message</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {conversations.map((conversation) => (
-              <TableRow key={conversation.id} className="hover:bg-muted/50">
-                <TableCell className="font-medium">{conversation.id}</TableCell>
+              <TableRow key={conversation.id} className="hover:bg-gray-800/50 border-gray-800">
+                <TableCell className="font-medium text-gray-100">{conversation.id}</TableCell>
+                <TableCell className="text-gray-300">{conversation.startTime}</TableCell>
+                <TableCell className="text-gray-300">{conversation.duration}</TableCell>
+                <TableCell className="text-gray-300">{conversation.messages}</TableCell>
                 <TableCell>
-                  <div className="flex items-center space-x-2">
-                    <Avatar className="h-8 w-8">
-                      <AvatarFallback className="bg-blue-100 text-blue-700 text-xs">
-                        {conversation.customer.split(' ').map(n => n[0]).join('')}
-                      </AvatarFallback>
-                    </Avatar>
-                    <span className="font-medium">{conversation.customer}</span>
-                  </div>
-                </TableCell>
-                <TableCell>{conversation.startTime}</TableCell>
-                <TableCell>{conversation.duration}</TableCell>
-                <TableCell>{conversation.messages}</TableCell>
-                <TableCell>
-                  <Badge variant="secondary" className={getStatusColor(conversation.status)}>
+                  <Badge variant="outline" className={getStatusColor(conversation.status)}>
                     {getStatusIcon(conversation.status)}
                     <span className="ml-1 capitalize">{conversation.status}</span>
                   </Badge>
                 </TableCell>
                 <TableCell>
-                  <Badge variant="secondary" className={getResolutionColor(conversation.resolution)}>
+                  <Badge variant="outline" className={getResolutionColor(conversation.resolution)}>
                     {conversation.resolution}
                   </Badge>
                 </TableCell>
                 <TableCell>
                   {conversation.satisfaction ? (
                     <div className="flex items-center space-x-1">
-                      <span className="text-yellow-500">
+                      <span className="text-yellow-400">
                         {'★'.repeat(conversation.satisfaction)}
                       </span>
-                      <span className="text-xs text-muted-foreground">
+                      <span className="text-xs text-gray-400">
                         ({conversation.satisfaction}/5)
                       </span>
                     </div>
                   ) : (
-                    <span className="text-muted-foreground text-sm">N/A</span>
+                    <span className="text-gray-400 text-sm">N/A</span>
                   )}
                 </TableCell>
                 <TableCell>
                   <div className="flex flex-wrap gap-1">
                     {conversation.intents.map((intent, index) => (
-                      <Badge key={index} variant="outline" className="text-xs">
+                      <Badge key={index} variant="outline" className="text-xs bg-gray-800 text-gray-300 border-gray-700">
                         {intent}
                       </Badge>
                     ))}
                   </div>
                 </TableCell>
-                <TableCell className="max-w-[200px] truncate text-sm text-muted-foreground">
+                <TableCell className="max-w-[200px] truncate text-sm text-gray-400">
                   {conversation.lastMessage}
                 </TableCell>
               </TableRow>
