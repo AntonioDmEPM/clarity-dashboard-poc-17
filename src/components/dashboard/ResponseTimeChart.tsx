@@ -44,6 +44,7 @@ export const ResponseTimeChart: React.FC = () => {
                 border: '1px solid hsl(var(--border))',
                 borderRadius: '8px'
               }}
+              cursor={{ fill: 'rgba(128, 128, 128, 0.15)' }}
             />
             <Bar 
               dataKey="avgTime" 
