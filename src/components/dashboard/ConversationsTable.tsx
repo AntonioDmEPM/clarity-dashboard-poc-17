@@ -134,7 +134,7 @@ export const ConversationsTable: React.FC = () => {
       <CardContent>
         <Table>
           <TableHeader>
-            <TableRow className="border-gray-800 hover:bg-gray-800/50">
+            <TableRow className="border-gray-800 hover:bg-gray-800/30">
               <TableHead className="text-gray-300">ID</TableHead>
               <TableHead className="text-gray-300">Start Time</TableHead>
               <TableHead className="text-gray-300">Duration</TableHead>
@@ -148,7 +148,7 @@ export const ConversationsTable: React.FC = () => {
           </TableHeader>
           <TableBody>
             {conversations.map((conversation) => (
-              <TableRow key={conversation.id} className="hover:bg-gray-800/50 border-gray-800">
+              <TableRow key={conversation.id} className="hover:bg-gray-800/30 border-gray-800">
                 <TableCell className="font-medium text-gray-100">{conversation.id}</TableCell>
                 <TableCell className="text-gray-300">{conversation.startTime}</TableCell>
                 <TableCell className="text-gray-300">{conversation.duration}</TableCell>
