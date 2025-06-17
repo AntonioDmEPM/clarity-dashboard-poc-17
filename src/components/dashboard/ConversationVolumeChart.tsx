@@ -44,8 +44,8 @@ export const ConversationVolumeChart: React.FC = () => {
               type="monotone"
               dataKey="conversations"
               stackId="1"
-              stroke="#3b82f6"
-              fill="#3b82f6"
+              stroke="#1a365d"
+              fill="#1a365d"
               fillOpacity={0.2}
               name="Total Conversations"
             />
@@ -53,8 +53,8 @@ export const ConversationVolumeChart: React.FC = () => {
               type="monotone"
               dataKey="resolved"
               stackId="2"
-              stroke="#10b981"
-              fill="#10b981"
+              stroke="#f56500"
+              fill="#f56500"
               fillOpacity={0.3}
               name="Resolved"
             />
